@@ -11,27 +11,27 @@ typedef struct {
     int qt_elementos;
 } lista;
 
-///Se a lista está cheia
+///Se a lista estÃ¡ cheia
 bool is_full(lista l);
 
 void init_lista(lista * l);
 
-///Determinar o número de nós de uma lista;
+///Determinar o nÃºmero de nÃ³s de uma lista;
 int tamanho_lista(lista l);
 
-//Acessar o k-ésimo nó da lista;
+//Acessar o k-Ã©simo nÃ³ da lista;
 bool acessar(lista l, int k, data* val);
 
-//Alterar o valor do k-ésimo nó da lista
+//Alterar o valor do k-Ã©simo nÃ³ da lista
 bool alterar(lista* l, int k, data val);
 
-//Localizar um nó que contém um determinado valor
+//Localizar um nÃ³ que contÃ©m um determinado valor
 int localizar(lista l, data val);
 
-//Inserir um novo nó na k-ésima posição da lista;
+//Inserir um novo nÃ³ na k-Ã©sima posiÃ§Ã£o da lista;
 bool inserir(lista* l, int k, data val);
 
-//Remover o k-ésimo nó da lista;
+//Remover o k-Ã©simo nÃ³ da lista;
 bool remover(lista* l, int k, data * val);
 
 //Concatenar duas listas;
@@ -48,8 +48,6 @@ int lst_procurar(lista l, data val);
 
 bool lst_ins_ordenado(lista *l, data val);
 
-bool lst_concatenar(lista lst1, lista lst2, lista * lst3);
-
 bool lst_inserir_final(lista * l, data x);
 
 bool lst_inserir_inicio(lista * l, data x);
@@ -57,5 +55,7 @@ bool lst_inserir_inicio(lista * l, data x);
 bool lst_remover_final(lista * l, data * x);
 
 bool lst_remover_inicio(lista * l, data * x);
+
+bool lst_concatenar(lista lst1, lista lst2, lista * lst3);
 
 #endif // _LISTA_H
