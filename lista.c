@@ -13,9 +13,9 @@ void init_lista(lista * l){
     }
 }
 
-//Alterar o valor do k-ésimo nó da lista;
+//Alterar o valor do k-Ã©simo nÃ³ da lista;
 bool alterar(lista* l, int k, data val) {
-    if (k < 0 || k >= l->qt_elementos)
+    if (k < 0 || k > l->qt_elementos)
         return false;
 
     l->dados[k] = val;
@@ -24,21 +24,21 @@ bool alterar(lista* l, int k, data val) {
 }
 
 
-///Determinar o número de nós de uma lista;
+///Determinar o nÃºmero de nÃ³s de uma lista;
 int tamanho_lista(lista l){
     return l.qt_elementos;
 }
 
-//Acessar o k-ésimo nó da lista;
+//Acessar o k-Ã©simo nÃ³ da lista;
 bool acessar(lista l, int k, data* val) {
-    if (k < 0 || k >= l.qt_elementos)
+    if (k < 0 || k > l.qt_elementos)
         return false;
 
     (*val) = l.dados[k];
     return true;
 }
 
-//Localizar um nó que contém um determinado valor
+//Localizar um nÃ³ que contÃ©m um determinado valor
 int localizar(lista l, data val) {
     int i;
     for (i = 0; i < l.qt_elementos; i++) {
@@ -49,7 +49,7 @@ int localizar(lista l, data val) {
     return -1;
 }
 
-//Insere um valor na posição e move todos para a direita
+//Insere um valor na posiÃ§Ã£o e move todos para a direita
 bool inserir(lista * l, int k, data val) {
     if (k < 0 || k > l->qt_elementos)
         return false;
@@ -59,7 +59,7 @@ bool inserir(lista * l, int k, data val) {
 
     int i;
     for (i = l->qt_elementos; i > k; i--) {
-        // ate um determinado nó K,
+        // ate um determinado nÃ³ K,
         // move todos os itens da lista para a esquerda
         l->dados[i] = l->dados[i-1];
     }
@@ -71,7 +71,7 @@ bool inserir(lista * l, int k, data val) {
 }
 
 bool remover(lista* l, int k, data * val) {
-    if (k < 0 || k >= l->qt_elementos)
+    if (k < 0 || k > l->qt_elementos)
         return false;
 
     if (l->qt_elementos == 0)
@@ -91,7 +91,7 @@ bool remover(lista* l, int k, data * val) {
 
 //Concatenar duas listas;
 bool concat(lista l1, lista l2, lista* l3){
-    ///Implemente
+    /// mudar estrutura da lista para utilizar nÃ³s
 }
 
 //
@@ -108,14 +108,7 @@ void lst_imprimir(lista l) {
 }
 
 int lst_procurar(lista l, data val) {
-    int i;
-    for(i = 0; i < l.qt_elementos; i++) {
-        if (val == l.dados[i]) {
-            return i;
-        }
-    }
-
-    return -1;
+    return localizar(l, val);
 }
 
 bool lst_ins_ordenado(lista *l, data val) {
@@ -128,4 +121,24 @@ bool lst_ins_ordenado(lista *l, data val) {
     }
 
     inserir(l, i, val);
+}
+
+bool lst_inserir_final(lista * l, data x) {
+    inserir(l, l->qt_elementos, x);
+}
+
+bool lst_inserir_inicio(lista * l, data x) {
+    inserir(l, 0, x);
+}
+
+bool lst_remover_final(lista * l, data * x) {
+    remover(l, l->qt_elementos - 1, x);
+}
+
+bool lst_remover_inicio(lista * l, data * x) {
+    remover(l, 0, x);
+}
+
+bool lst_concatenar(lista lst1, lista lst2, lista * lst3) {
+    //chamar funÃ§Ã£o concat acima
 }
