@@ -1,13 +1,16 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "lista.h"
 
 bool is_full(lista l){
     return (l.qt_elementos == TAMANHO_LISTA);
 }
 
-void init_lista(lista * l){
+void init_lista(lista * l, bool maior){
     l->qt_elementos = 0;
     int i;
+    int tamanho = maior ? 20 : TAMANHO_LISTA;
+
     for (i = 0; i < TAMANHO_LISTA; i++){
         l->dados[i] = 0;
     }
@@ -59,9 +62,13 @@ bool inserir(lista * l, int k, data val) {
 
     int i;
     for (i = l->qt_elementos; i > k; i--) {
-        // ate um determinado nó K,
-        // move todos os itens da lista para a esquerda
-        l->dados[i] = l->dados[i-1];
+        // Example: [0, 1, 2], the counter 'i' stars with 3,
+        // so it corresponds to the next empty item in the list.
+
+        // começa pelo proximo item vazio,
+        // move os itens da esquerda para a direita,
+        // ate um determinado nó K.
+        l->dados[i] = l->dados[i - 1];
     }
 
     l->dados[k] = val;
@@ -77,10 +84,14 @@ bool remover(lista* l, int k, data * val) {
     if (l->qt_elementos == 0)
         return false;
 
+    // save the removed item
     (*val) = l->dados[k];
 
     int i;
     for (i = k; i < l->qt_elementos; i++) {
+        // starts in the position k
+        // the item to be removed will be replaced by the next item
+        // so it basically moves all itens to the left
         l->dados[i] = l->dados[i + 1];
     }
 
@@ -90,8 +101,18 @@ bool remover(lista* l, int k, data * val) {
 }
 
 //Concatenar duas listas;
-bool concat(lista l1, lista l2, lista* l3){
-    /// mudar estrutura da lista para utilizar nós
+bool concat(lista l1, lista l2, lista* l3) {
+    // mudar estrutura da lista para utilizar nós
+
+    int i, j;
+
+    for (i = 0; i < l1.qt_elementos; i++) {
+        lst_inserir_final(l3, l1.dados[i]);
+    }
+
+    for (j = 0; j < l2.qt_elementos; j++) {
+        lst_inserir_final(l3, l2.dados[j]);
+    }
 }
 
 //
@@ -140,5 +161,5 @@ bool lst_remover_inicio(lista * l, data * x) {
 }
 
 bool lst_concatenar(lista lst1, lista lst2, lista * lst3) {
-    //chamar função concat acima
+    concat(lst1, lst2, lst3);
 }
