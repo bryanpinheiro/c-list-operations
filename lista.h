@@ -14,7 +14,7 @@ typedef struct {
 ///Se a lista está cheia
 bool is_full(lista l);
 
-void init_lista(lista * l);
+void init_lista(lista * l, bool maior);
 
 ///Determinar o número de nós de uma lista;
 int tamanho_lista(lista l);
